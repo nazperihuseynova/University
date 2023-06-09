@@ -1,0 +1,31 @@
+insert into uni_university(id,name) values(1,'BEU');
+ commit;
+ 
+ insert into uni_faculties(id,phone,uni_university_id,name) values(1,0559044893,1,'Engineering');
+ commit;
+
+ insert into uni_groups(id,uni_faculty_id,name) values(1,1,'572');
+ commit;
+ 
+ insert into uni_subjects(id,name) values(1,'Computer Engineering');
+ commit;
+ 
+ insert into uni_teachers(id,first_name,last_name,birthdate,phone,mail,uni_subjects_id)  
+ values(1,'Vali','Aliyev',to_date('02.12.1995','DD.MM.YYYY'), 0555214783,'teacher@gmail.com',1);
+ commit;
+
+
+insert into uni_education_form(id,name) values(1,'full time');
+ commit;
+
+insert into uni_sector(id,name) values(1,'eng');
+ commit;
+
+ 
+ insert into uni_groups_teachers (uni_groups_id,uni_teachers_id) values(1,1);
+ commit;
+
+ insert into uni_student(id,first_name,last_name,birthdate,phone,mail,gpa,uni_education_form_id,uni_sector_id,uni_groups_id)  
+ values(1,'Nazperi','Huseynova',to_date('13.07.2000','DD.MM.YYYY'),0555590935,'nh@gmail.com',96,1,1,1);
+ commit;
+ 
