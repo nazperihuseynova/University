@@ -1,0 +1,76 @@
+--Universitet cedveli
+create table uni_university(
+id number primary key,
+name varchar2(100));
+/
+--Tehsil formasi cedveli
+create table uni_education_form(
+id number primary key,
+name varchar2(30));
+/
+--Fennler cedveli
+create table uni_subjects(
+id number primary key,
+name varchar2(100));
+/
+--Sektor cedveli
+create table uni_sector(
+id number primary key,
+name varchar2(30));
+/
+--Qrup cedveli
+create table uni_groups(
+id number primary key,
+name varchar2(30),
+uni_faculty_id number,
+constraint uni_faculties_uni_groups_id_FK foreign key(uni_faculty_id) references uni_faculties(id));
+/
+--Telebe cedveli
+create table uni_student(
+id number primary key,
+first_name varchar2(30),
+last_name varchar2(30),
+birthdate date not null,
+phone number,
+mail varchar2(30),
+gpa number,
+uni_education_form_id number unique,
+uni_sector_id number unique,
+uni_groups_id number unique,
+constraint uni_education_form_fk foreign key (uni_education_form_id)
+references uni_education_form (id),
+constraint uni_sector_fk foreign key (uni_sector_id)
+references uni_sector (id),
+constraint group_fk foreign key (uni_groups_id)
+references uni_groups(id)
+);
+/
+--Fakulteler cedveli
+create table uni_faculties(
+id number primary key,
+name varchar2(30),
+phone number,
+uni_university_id number,
+constraint uni_faculties_uni_university_id_fk foreign key (uni_university_id)
+references uni_university(id));
+/
+--Muellimler cedveli
+create table uni_teachers(
+id number primary key,
+first_name varchar2(30),
+last_name varchar2(30),
+phone number,
+mail varchar2(30),
+birthdate date not null,
+uni_subjects_id number,
+constraint uni_teachers_uni_subjects_id_fk foreign key (uni_subjects_id)
+references uni_subjects(id));
+/
+--Qrup_muellim cedveli
+create table uni_groups_teachers(
+uni_teachers_id number,
+uni_groups_id number,
+constraint uni_gr_tea_uni_tea_id_FK foreign key(uni_teachers_id) 
+references uni_teachers(id),
+constraint uni_gr_tea_uni_gr_id_FK foreign key(uni_groups_id) 
+references uni_groups(id));
